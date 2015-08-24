@@ -4,9 +4,13 @@
 <configuration>
 	<!-- porperties要放在前面，否则会报错 -->
 	<!-- 即可以通过外部属性文件引入，也可通过文件内property定义 -->
+	<!-- 属性加载顺序： -->
+	<!-- ①properties体内定义的属性； -->
+	<!-- ②属性文件，同名属性会覆盖①中加载的属性 -->
+	<!-- ③方法传递的属性，编程方法实现 -->
 	<properties resource="config.properties">
-		<property name="username" value="username" />
-		<property name="password" value="password" />
+		<property name="username" value="bxhr" />
+		<property name="password" value="Password" />
 	</properties>
 	<typeAliases>
 		<typeAlias type="com.mybatis.test.domain.User" alias="user" />
@@ -24,5 +28,7 @@
 	</environments>
 	<mappers>
 		<mapper resource="user.xml" />
+		<mapper resource="user-interface.xml" />
+<!-- 		<mapper class="com.mybatis.test.inter.UserOperation"/> -->
 	</mappers>
 </configuration>

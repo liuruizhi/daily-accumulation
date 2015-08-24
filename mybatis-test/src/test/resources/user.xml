@@ -24,4 +24,5 @@
 		keyProperty="id">
 		insert into `user` (`name`) values(#{name})
 	</insert>
+	
 </mapper>

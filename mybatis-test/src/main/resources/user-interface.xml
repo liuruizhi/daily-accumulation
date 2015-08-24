@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 此namespace要与对应的接口包名一致，否则不能成功 -->
+<mapper namespace="com.mybatis.test.inter.UserOperation">
+
+	<update id="updateUser" parameterType="int">
+		update user set name='java' where id=#{id}
+	</update>
+	
+</mapper>

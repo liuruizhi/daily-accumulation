@@ -9,10 +9,10 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.mybatis.test.domain.User;
+import com.mybatis.test.inter.UserOperation;
 
 public class UserTest {
 	private static Reader reader;
@@ -49,5 +49,15 @@ public class UserTest {
 		sqlSession.insert("com.mybatis.test.UserMapper.insertUser", user);
 		sqlSession.commit();
 //		System.out.println(user.getName());
+	}
+	
+	@Test
+	public void updateUser(){
+		sqlSession = sqlSessionFactory.openSession();
+//		sqlSession.update("com.mybatis.test.inter.UserOperation.updateUser", 1);
+//		sqlSession.commit();
+		UserOperation userOperation = sqlSession.getMapper(UserOperation.class);
+		userOperation.updateUser(1);
+		sqlSession.commit();
 	}
 }
