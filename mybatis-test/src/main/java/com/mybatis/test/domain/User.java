@@ -1,7 +1,7 @@
 package com.mybatis.test.domain;
 
 /**
- * ²âÊÔÓÃÊµÌå
+ * æµ‹è¯•ç”¨å®ä½“
  * 
  * @author lrz
  * 

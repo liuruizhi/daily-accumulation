@@ -1,7 +1,7 @@
 package com.mybatis.test.inter;
 
 /**
- * ½Ó¿Ú±à³Ì²âÊÔ
+ * æ¥å£ç¼–ç¨‹æµ‹è¯•
  * 
  * @author lrz
  * 
