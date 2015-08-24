@@ -2,6 +2,12 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+	<!-- porperties要放在前面，否则会报错 -->
+	<!-- 即可以通过外部属性文件引入，也可通过文件内property定义 -->
+	<properties resource="config.properties">
+		<property name="username" value="username" />
+		<property name="password" value="password" />
+	</properties>
 	<typeAliases>
 		<typeAlias type="com.mybatis.test.domain.User" alias="user" />
 	</typeAliases>
@@ -9,10 +15,10 @@
 		<environment id="development">
 			<transactionManager type="JDBC" />
 			<dataSource type="POOLED">
-				<property name="driver" value="com.mysql.jdbc.Driver" />
-				<property name="url" value="jdbc:mysql://127.0.0.1:3306/mybatis" />
-				<property name="username" value="bxhr" />
-				<property name="password" value="Passw0rd" />
+				<property name="driver" value="${driver}" />
+				<property name="url" value="${url}" />
+				<property name="username" value="${username}" />
+				<property name="password" value="${password}" />
 			</dataSource>
 		</environment>
 	</environments>
