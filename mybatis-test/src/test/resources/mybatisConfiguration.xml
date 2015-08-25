@@ -29,6 +29,7 @@
 	<mappers>
 		<mapper resource="user.xml" />
 		<mapper resource="user-interface.xml" />
+		<mapper resource="blog.xml" />
 <!-- 		<mapper class="com.mybatis.test.inter.UserOperation"/> -->
 	</mappers>
 </configuration>

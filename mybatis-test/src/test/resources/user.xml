@@ -4,6 +4,8 @@
 
 <mapper namespace="com.mybatis.test.UserMapper">
 
+	<sql id="all-fields">${user}.id, ${user}.name</sql>
+
 	<!-- 返回结果 -->
 	<resultMap type="user" id="userList">
 		<id column="id" property="id" />
@@ -18,6 +20,12 @@
 	<!-- 获取所有用户 注: 返回类型为userList，且resultMap不能换为resultType -->
 	<select id="selectAll" resultMap="userList">
 		select * from `user`
+	</select>
+	
+	<select id="selectUser">
+		select
+			<include refid="all-fields"><property name="user" value="user"/></include>
+		from user
 	</select>
 
 	<insert id="insertUser" parameterType="user" useGeneratedKeys="true"
