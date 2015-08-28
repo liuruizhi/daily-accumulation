@@ -3,6 +3,7 @@ package com.mybatis.test;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -37,6 +38,28 @@ public class UserTest {
 		sqlSession = sqlSessionFactory.openSession();
 		List<User> list = sqlSession.selectList("com.mybatis.test.UserMapper.selectAll");
 		for(User u : list){
+			System.out.println(u.getName());
+		}
+	}
+	
+	@Test
+	public void selectUsers(){
+		sqlSession = sqlSessionFactory.openSession();
+		Map<Integer, Object> result = sqlSession.selectMap("com.mybatis.test.UserMapper.selectUsers", "id");
+		for(Map.Entry<Integer, Object> entry : result.entrySet()){
+			System.out.println(entry.getKey());
+			System.out.println(entry.getValue());
+		}
+	}
+	
+	/**
+	 *  π”√sql∆¨∂Œ
+	 */
+	@Test
+	public void selectUser(){
+		sqlSession = sqlSessionFactory.openSession();
+		List<User> result = sqlSession.selectList("com.mybatis.test.UserMapper.selectUser");
+		for(User u : result){
 			System.out.println(u.getName());
 		}
 	}
