@@ -23,18 +23,21 @@ public class SaveTest {
 		Reader reader = new InputStreamReader(new FileInputStream(
 				"src/test/resources/database.properties"));
 		properties.load(reader);
-		System.out.println(properties.getProperty("driver_h2"));
-		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("entitymangerfactory");
+		
+		//通过properties文件配置属性
+		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("entitymangerfactory",properties);
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		//开启事物
 		entityManager.getTransaction().begin();
 		
+		//新增对象
 		Student s = new Student();
 		s.setId("uuid");
 		s.setAge(11);
 		s.setName("test");
 		entityManager.persist(s);
 		
+		//查询数据
 		Query query = entityManager.createQuery("select t from Student t");
 
 		List<Student> l = query.getResultList();

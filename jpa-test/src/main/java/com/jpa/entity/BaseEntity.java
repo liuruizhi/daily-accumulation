@@ -14,6 +14,7 @@ public class BaseEntity implements Serializable{
 	
 	@UuidGenerator(name = "UUID_GEN")
 	@Id
+	//暂未实现自动生成UUID的功能
 //	@GeneratedValue(generator = "UUID_GEN")
 	@Column(name = "ID")
 	private String id;
