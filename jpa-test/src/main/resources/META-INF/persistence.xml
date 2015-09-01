@@ -4,9 +4,22 @@
     version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
     <persistence-unit name="entitymangerfactory" transaction-type="RESOURCE_LOCAL">
     	<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        <class>com.jpa.entity.Student</class>
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
+        
         <properties>
+			<!-- 关联数据库 -->
+        	<property name="eclipselink.target-database" value="org.eclipse.persistence.platform.database.H2Platform"/>
+            <property name="javax.persistence.jdbc.driver" value="org.h2.Driver" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:h2:D:/h2-db/test;create=true" />
+            <property name="javax.persistence.jdbc.user" value="sa" />
+            <property name="javax.persistence.jdbc.password" value="" />
+ 
+            <!-- EclipseLink should create the database schema automatically -->
             <property name="eclipselink.ddl-generation" value="create-or-extend-tables"/>
+<!--             <property name="eclipselink.ddl-generation" value="create-tables" /> -->
+            <property name="eclipselink.ddl-generation.output-mode" value="database" />
+            <property name="eclipselink.logging.level" value="SEVERE"/>
         </properties>
     </persistence-unit>
 </persistence>

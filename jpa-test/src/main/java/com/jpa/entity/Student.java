@@ -2,22 +2,14 @@ package com.jpa.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.eclipse.persistence.annotations.UuidGenerator;
-
 @Entity
-@Table
-public class Student{
+@Table(name = "student")
+public class Student extends BaseEntity{
 	
-	@Id
-	@GeneratedValue(generator = "UUID_GEN")
-	@UuidGenerator(name = "UUID_GEN")
-	@Column(name = "ID")
-	private String id;
-	
+	private static final long serialVersionUID = -6237985087393790633L;
+
 	@Column(name = "NAME")
 	private String name;
 	
@@ -34,11 +26,5 @@ public class Student{
 	}
 	public void setAge(Integer age) {
 		this.age = age;
-	}
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
 	}
 }
