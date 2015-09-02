@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.mybatis.dao.inter.StudentDAO">
+	<select id="getById" resultType="Student" parameterType="int">
+		select * from student where id=#{id}
+	</select>
+	<insert id="saveStudent">
+		insert into student (id, name, age) values (#{id}, #{name}, #{age})
+	</insert>
+	<update id="updateStudent">
+		update student set name=#{name} where id=#{id}
+	</update>
+	<delete id="deleteStudent">
+		delete from student where id=#{id}
+	</delete>
+</mapper>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName">
+			<value>${driver_h2}</value>
+		</property>
+		<property name="url">
+			<value>${url_h2}</value>
+		</property>
+		<property name="username">
+			<value>${username_h2}</value>
+		</property>
+		<property name="password">
+			<value>${password_h2}</value>
+		</property>
+	</bean>
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation">
+			<value>classpath:mybatisConfig.xml</value>
+		</property>
+		<property name="mapperLocations">
+			<value>classpath:mappers/*.xml</value>
+		</property>
+	</bean>
+
+	<!-- 关于此处socpe的解释（个人理解）：SQLSession是针对每个事务的，不可重用，spring默认是单例模式，所以要设置为此值 -->
+	<bean class="org.mybatis.spring.SqlSessionTemplate" scope="prototype">
+		<constructor-arg ref="sqlSessionFactory" />
+	</bean>
+	
+<!-- 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer" -->
+<!-- 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/> -->
+<!-- 		<property name="basePackage" value="com.spring.mybatis.dao.inter"/> -->
+<!-- 	</bean> -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"
+		p:sqlSessionFactoryBeanName="sqlSessionFactory" p:basePackage="com.spring.mybatis.dao.inter" />
+
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+		p:dataSource-ref="dataSource" />
+
+	<!-- 默认的transaction-manager为transactionManager，所以如果上面的bean定义没有明确指定id，则可以直接写为<tx:annotation-driven/> -->
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+</beans>
