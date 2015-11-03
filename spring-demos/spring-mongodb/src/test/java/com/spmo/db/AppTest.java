@@ -4,11 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 import com.spmo.entity.Person;
 import com.spmo.repository.PersonRepository;
 
 @SpringBootApplication
+//@EnableMongoRepositories用于从指定的位置加载所需要的类
+@EnableMongoRepositories(basePackageClasses=com.spmo.repository.PersonRepository.class)
 public class AppTest implements CommandLineRunner{
 	
 	@Autowired
