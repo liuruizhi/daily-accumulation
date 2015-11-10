@@ -1,15 +1,15 @@
 git test for myself.
 git commit -m "".
-#���Ӳ�commit��ʡȥadd����
+#添加并commit，省去add操作
 git commit -a -m ""
-#�鿴��־
+#查看日志
 git log
-#ֻ��ʾһ��
+#只显示一行
 git log --pretty=oneline
-#�˳�log��q
-#���˵�ĳ���汾(^��ʾ��һ����^^����һ������100�Σ�HEAD~100)
+#退出log用q
+#回退到某个版本(^表示上一个，^^再上一个，那100次？HEAD~100)
 git reset --hard HEAD^
-#����֮�󻹿����ٻص�ĳ����ǰ�汾��ǰ���������û�أ�����������ǰ汾��ͷ��λ��û��Ҫȫд��
+#回退之后还可以再回到某个当前版本，前提是命令窗口没关（下面的数字是版本号头几位，没必要全写）
 git reset --hard 32456
-#����������������Ҳ�а취��git�ṩ���ҩ��
+#但是如果关了命令窗口也有办法（git提供后悔药）
 git reflog
