@@ -13,3 +13,8 @@ git reset --hard HEAD^
 git reset --hard 32456
 #但是如果关了命令窗口也有办法（git提供后悔药）
 git reflog
+#创建分支
+git checkout -b name
+#等同于以下两条
+git branch name
+git checkout name
