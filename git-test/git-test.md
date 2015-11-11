@@ -16,5 +16,14 @@ git reflog
 #创建分支
 git checkout -b name
 #等同于以下两条
-git branch name
-git checkout name
+git branch name#创建分支
+git checkout name#切换分支
+#合并分支
+git merge name
+#删除分支
+git branch -d name
+#git冲突必须手动解决
+#查看提交日志路径
+git log --graph --pretty=oneline --abbrev-commit
+#创建临时储存点 -- 有临时任务需要切换分支时可以将当前内容存储起来
+git stash
