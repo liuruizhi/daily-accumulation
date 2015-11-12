@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+    
+    
+<!--     ②此下三行为简单配置启用aop，对应测试② -->
+<!--     <bean id="aopAction" class="com.spring.aop.AopAction"/> -->
+<!--     <bean class="com.spring.aspectj.AspectjAction"/> -->
+<!--     <bean class="org.springframework.aop.aspectj.annotation.AnnotationAwareAspectJAutoProxyCreator"/> -->
+
+<!-- 	测试③ -->
+<!-- 	自动为容器中那些匹配@Aspectj注解的切面bean创建代理，完成切面植入，内部依然采用自动代理创建，隐藏了细节 -->
+<!-- 	<aop:aspectj-autoproxy/> -->
+<!-- 	<bean id="aopAction" class="com.spring.aop.AopAction"/> -->
+<!-- 	<bean class="com.spring.aspectj.AspectjAction"/> -->
+
+<!-- 	测试④ -->
+<!-- 	切点只是说明要在哪里执行某个逻辑，切面用来组织切点与逻辑，只有组到一起才会起作用 -->
+	<aop:config>
+		<aop:pointcut expression="execution(* bye(..))" id="pointCut"/>
+		<aop:aspect id="aspect" ref="aspectj">
+			<aop:after method="byeAop" pointcut-ref="pointCut"/>
+		</aop:aspect>
+	</aop:config>
+	<bean id="aspectj" class="com.spring.aspectj.AspectjActionXML"/>
+	<bean id="aopAction" class="com.spring.aop.AopAction"/>
+</beans>
