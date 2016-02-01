@@ -1,0 +1,3 @@
+759  [MyScheduler_Worker-1] DEBUG org.quartz.simpl.SimpleThreadPool - WorkerThread is shut down.
+759  [MyScheduler_Worker-3] DEBUG org.quartz.simpl.SimpleThreadPool - WorkerThread is shut down.
+759  [MyScheduler_Worker-2] DEBUG org.quartz.simpl.SimpleThreadPool - WorkerThread is shut down.

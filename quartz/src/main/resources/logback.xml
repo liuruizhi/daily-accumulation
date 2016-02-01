@@ -1,0 +1,71 @@
+<!-- Let us begin by discussing the initialization steps that logback follows 
+	to try to configure itself: -->
+<!-- ①Logback tries to find a file called logback.groovy in the classpath. -->
+<!-- ②If no such file is found, logback tries to find a file called logback-test.xml 
+	in the classpath. -->
+<!-- ③If no such file is found, it checks for the file logback.xml in the 
+	classpath.. -->
+<!-- ④If no such file is found, and the executing JVM has the ServiceLoader 
+	(JDK 6 and above) the ServiceLoader will be used to resolve an implementation 
+	of com.qos.logback.classic.spi.Configurator. The first implementation found 
+	will be used. See ServiceLoader documentation for more details. -->
+<!-- ⑤If none of the above succeeds, logback configures itself automatically 
+	using the BasicConfigurator which will cause logging output to be directed 
+	to the console. -->
+<!-- The fourth and last step is meant to provide a default (but very basic) 
+	logging functionality in the absence of a configuration file. -->
+<!-- If you are using Maven and if you place the logback-test.xml under the 
+	src/test/resources folder, Maven will ensure that it won't be included in 
+	the artifact produced. Thus, you can use a different configuration file, 
+	namely logback-test.xml during testing, and another file, namely, logback.xml, 
+	in production. The same principle applies by analogy for Ant. -->
+
+<!-- Assuming the configuration files logback-test.xml or logback.xml are 
+	not present, logback will default to invoking BasicConfigurator which will 
+	set up a minimal configuration. This minimal configuration consists of a 
+	ConsoleAppender attached to the root logger. The output is formatted using 
+	a PatternLayoutEncoder set to the pattern %d{HH:mm:ss.SSS} [%thread] %-5level 
+	%logger{36} - %msg%n. Moreover, by default the root logger is assigned the 
+	DEBUG level. -->
+
+<configuration debug="true">
+	<contextName>myAppName</contextName>
+	<appender name="OUT_CON" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{yyyy-MM-dd_HHmm} [%thread] %-5level %logger{36} - %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+<!-- 	class="ch.qos.logback.core.FileAppender" -->
+	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender"
+		additivity="false">
+		<file>logbak.log</file>
+
+		<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+			<fileNamePattern>tests.%i.log.zip</fileNamePattern>
+			<minIndex>1</minIndex>
+			<maxIndex>30</maxIndex>
+		</rollingPolicy>
+
+		<triggeringPolicy
+			class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+			<maxFileSize>5KB</maxFileSize>
+		</triggeringPolicy>
+
+
+		<encoder>
+			<pattern>%-4relative [%thread] %-5level %logger{36} - %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+	<!-- 用于设置某一包或具体类的日志级别 -->
+	<logger name="com.quartz.test.QuartzTest" level="INFO" />
+	<!-- 通过logger将指定的包或类的日志打印到文件中 -->
+	<!-- <logger name="com.quartz.test.QuartzTest" level="INFO"> -->
+	<!-- <appender-ref ref="FILE"/> -->
+	<!-- </logger> -->
+	<root level="debug">
+		<appender-ref ref="OUT_CON" />
+		<appender-ref ref="FILE" />
+	</root>
+</configuration>
