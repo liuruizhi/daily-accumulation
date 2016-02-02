@@ -27,3 +27,6 @@ git branch -d name
 git log --graph --pretty=oneline --abbrev-commit
 #创建临时储存点 -- 有临时任务需要切换分支时可以将当前内容存储起来
 git stash
+
+====
+merger
