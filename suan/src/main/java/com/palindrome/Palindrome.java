@@ -1,6 +1,8 @@
 package com.palindrome;
 
 /**
+ * Longest Palindromic Substring
+ *
  * @author liuruizhi
  * @since 2018/12/28
  */
