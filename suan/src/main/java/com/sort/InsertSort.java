@@ -14,13 +14,12 @@ public class InsertSort {
 
     public static void insertSort(int[] arr) {
         for (int start = 1; start < arr.length; start++) {
-            for (int old = 0; old < start; old++) {
-                if (arr[start] < arr[old]) {
-                    int tmp = arr[start];
-                    for (int move = start - 1; move >= old; move--) {
-                        arr[move + 1] = arr[move];
-                    }
-                    arr[old] = tmp;
+            int tmp = arr[start];
+            for (int old = start; old > 0; old--) {
+                if (arr[old] < arr[old - 1]) {
+
+                    arr[old] = arr[old - 1];
+                    arr[old - 1] = tmp;
                 }
             }
 
