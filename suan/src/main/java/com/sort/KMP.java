@@ -22,7 +22,7 @@ public class KMP {
 
         System.out.print("pattern: ");
         for (int i = 0; i < offset1; i++)
-            System.out.print(" ");
+            System.out.print(" " + i);
         System.out.println(pat);
 
     }

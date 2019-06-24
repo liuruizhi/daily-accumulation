@@ -25,6 +25,7 @@ public class SwapNodePairs {
         ListNode node = head;
         while (node != null && node.next != null) {
             ListNode tmp = node.next.next;
+            // 翻转指针
             node.next.next = node;
             // node.next = tmp;
             pre.next = node.next;
@@ -40,5 +41,22 @@ public class SwapNodePairs {
         }
 
         return h.next;
+    }
+
+    public static void main(String[] args) {
+        ListNode listNode1 = new ListNode(1);
+        listNode1.val = 1;
+        ListNode listNode2 = new ListNode(2);
+        listNode2.val = 2;
+        ListNode listNode3 = new ListNode(3);
+        listNode3.val = 3;
+        ListNode listNode4 = new ListNode(4);
+        listNode4.val = 4;
+        listNode1.next = listNode2;
+        listNode2.next = listNode3;
+        listNode3.next = listNode4;
+        SwapNodePairs s = new SwapNodePairs();
+
+        s.swapPairs(listNode1);
     }
 }
