@@ -3,6 +3,8 @@ package com.tree;
 import java.util.*;
 
 /**
+ * 给定一颗二叉树 每一个节点具有不同的值, 和一个目标值 k, 在树中找到距离目标 k最近的节点 .如果存在多个这样的节点, 返回 靠近左侧的那一个.
+ *
  * Created by liuruizhi on 2019/5/27.
  */
 public class CutOffTree {
