@@ -45,8 +45,9 @@ public class CutOffTree {
 
         List<TreeNode> list = new LinkedList<>();
         Set<TreeNode> visited = new HashSet<>();
-        list.add(root);
-        visited.add(root);
+        // 从target开始
+        list.add(target);
+        visited.add(target);
 
         while (!list.isEmpty()) {
             TreeNode rem = list.remove(0);
