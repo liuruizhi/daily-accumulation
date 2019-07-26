@@ -24,9 +24,19 @@ public class FloorTest {
         return search(n - 1) + search(n - 2);
     }
 
-    public static void main(String[] args) {
-        String pre = "test";
-        String p = "otestere";
-        System.out.println(p.indexOf(pre));
+    public int search2(int n) {
+        if (1 == n) {
+            return 1;
+        }
+
+        int[] dp = new int[n + 1];
+        dp[1] = 1;
+        dp[2] = 2;
+        for (int i = 3; i <= n; i++) {
+            dp[i] = dp[i - 2] + dp[i - 1];
+        }
+
+        return dp[n];
     }
+
 }
