@@ -39,4 +39,27 @@ public class FloorTest {
         return dp[n];
     }
 
+    // 暴力法
+    // 在暴力法中，我们将会把所有可能爬的阶数进行组合，也就是 1 和 2 。
+    // 而在每一步中我们都会继续调用 climbStairs 这个函数模拟爬 1 阶和 2 阶的情形，并返回两个函数的返回值之和。
+    // climbStairs(i,n)=(i + 1, n) + climbStairs(i + 2, n)
+    // 其中 i 定义了当前阶数，而 n 定义了目标阶数。
+
+    // 作者：LeetCode
+    // 链接：https://leetcode-cn.com/problems/two-sum/solution/pa-lou-ti-by-leetcode/
+    // 来源：力扣（LeetCode）
+    // 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+    public int search3(int i, int n) {
+
+        if (i > n) {
+            return 0;
+        }
+
+        if (i == n) {
+            return 1;
+        }
+
+        return search3(i + 1, n) + search3(i + 2, n);
+    }
+
 }
