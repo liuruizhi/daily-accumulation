@@ -25,7 +25,7 @@ public class TreeMaxDepth {
         Queue<TreeNode> queue = new LinkedList<>();
 
         int preCount = 1; // 当前层结点数量
-        int pCount = 0;  // 下前层结点数量
+        int pCount = 0;  // 下层结点数量
 
         int level = 0;
 
