@@ -1,3 +1,5 @@
+package com.queen;
+
 // 出处https://blog.csdn.net/microopithecus/article/details/83832392
 //八皇后问题
 /*
@@ -18,51 +20,53 @@ public class EightQueen {
     static int[] Queen = new int[queennum];
     //最后满足条件的次数
     static int count = 0;
+
     //写一个回溯的分别进行每一行进行放置皇后使得进行下一行的放置
     public static void NQueen(int n)//放置第n行皇后
     {
         //每一行的每一个位置进行测试放置皇后
         for (int i = 0; i < queennum; i++) {
             //皇后的位置进行赋值
-            Queen[n]=i;
+            Queen[n] = i;
             //判断是否能放置皇后
-            if(judge(n)){
+            if (judge(n)) {
                 //如果是最后的一行并且满足条件的话则进行总次数的++操作
-                if(n==queennum-1){
+                if (n == queennum - 1) {
                     Show();
                     System.out.println();
                     count++;//方法加一
-                }else {
+                } else {
                     //否则的话则进行下一行的皇后进行放置
-                    NQueen(n+1);
+                    NQueen(n + 1);
                 }
- 
+
             }
         }
- 
+
     }
+
     //写一个判断是否可放置的函数
     public static boolean judge(int n)//判断（n,Queen(n)）能否放置皇后* n为第几行
     {
-        //循环要进行完因为要进行所有上满的列和所有上面的的对角线进行对比
-        for (int j = 0; j <n ; j++) {
+        //循环要进行完因为要进行所有上面的列和所有上面的的对角线进行对比
+        for (int j = 0; j < n; j++) {
             //首先判断同列，再判断对角线 ，同行不用判断因为是逐行放的没行只放一个
-            if(Queen[j]==Queen[n]||Math.abs(Queen[j]-Queen[n])==n-j){
+            if (Queen[j] == Queen[n] || Math.abs(Queen[j] - Queen[n]) == n - j) {
                 return false;
             }
         }
         return true;
- 
+
     }
-    public static void Show()
-    {
-        for(int i=0;i<queennum;i++)
-        {
-            System.out.print("("+i+","+Queen[i]+")");
+
+    public static void Show() {
+        for (int i = 0; i < queennum; i++) {
+            System.out.print("(" + i + "," + Queen[i] + ")");
         }
     }
-    public static void main(String[] args){
+
+    public static void main(String[] args) {
         NQueen(0);            //初始放置第一行的皇后
-        System.out.print("共有"+count+"种方式");
+        System.out.print("共有" + count + "种方式");
     }
 }
