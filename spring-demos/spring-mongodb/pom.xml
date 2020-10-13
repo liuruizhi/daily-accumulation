@@ -7,7 +7,7 @@
 	<packaging>war</packaging>
 	<properties>
 		<springmvc-version>4.2.0.RELEASE</springmvc-version>
-		<junit-version>4.12</junit-version>
+		<junit-version>4.13.1</junit-version>
 		<jdk.version>1.7</jdk.version>
 	</properties>
 
