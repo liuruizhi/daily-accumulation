@@ -6,7 +6,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<properties>
-		<springmvc-version>4.2.0.RELEASE</springmvc-version>
+		<springmvc-version>4.2.7.RELEASE</springmvc-version>
 		<junit-version>4.12</junit-version>
 		<jdk.version>1.7</jdk.version>
 	</properties>
